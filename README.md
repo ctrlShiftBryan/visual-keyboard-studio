@@ -1,4 +1,5 @@
 # vkbs
+Visual Keyboard Editor - A open source visual keyboard layout editor for an by the community.
 
 ## Project setup
 ```

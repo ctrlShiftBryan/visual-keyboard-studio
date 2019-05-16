@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-
     <svg
       width="118.722mm"
       height="55.993mm"
