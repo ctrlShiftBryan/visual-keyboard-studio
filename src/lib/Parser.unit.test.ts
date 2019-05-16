@@ -8,14 +8,14 @@ describe('Parser', () => {
     const json = getFixture('simple.keeb');
     const parser = new Parser(json);
     expect(parser.name).toEqual('simple');
-  })
+  });
 
   it('can parse rows', () => {
     const json = getFixture('simple.keeb');
     const parser = new Parser(json);
     expect(parser.rows).toEqual(3);
-  })
- }); 
+  });
+ });
 });
 
 

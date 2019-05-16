@@ -14,8 +14,8 @@
 </template>
 
 <script lang="ts">
-import { Prop, Component, Vue } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { Prop, Component, Vue } from 'vue-property-decorator';
+import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 const source = `
 
       <polygon
@@ -33,11 +33,11 @@ const source = `
 `;
 @Component({
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+  },
 })
 export default class Home extends Vue {
-  svg: string = source;
+  public svg: string = source;
 }
 </script>
 <style lang="scss" scoped>
