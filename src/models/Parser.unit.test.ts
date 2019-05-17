@@ -18,7 +18,7 @@ describe("Parser", () => {
     it("can parse rows", () => {
       const json = getFixture("simple.keeb");
       const parser = new Parser(json);
-      expect(parser.rows).toEqual(3);
+      expect(parser.rowsCount).toEqual(3);
     });
   });
 });
