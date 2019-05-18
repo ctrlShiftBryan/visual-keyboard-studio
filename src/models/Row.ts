@@ -1,6 +1,8 @@
+import { Key } from "./Key";
+
 export class Row {
   public keysCount: number;
-  public keys: any;
+  public keys: Key[];
   currentXOffset: number;
   currentYOffset: number;
   additionalWidth: number;
@@ -15,6 +17,7 @@ export class Row {
       if (typeof x === "object") {
         keyMeta = x;
       } else {
+        // check for additional offsets
         if (keyMeta.x !== undefined) {
           this.currentXOffset += keyMeta.x;
         }
@@ -23,16 +26,19 @@ export class Row {
           this.currentYOffset += keyMeta.y;
         }
 
+        // check for additional width
         if (keyMeta.w !== undefined) {
           this.additionalWidth += keyMeta.w - 1;
         }
 
-        this.keys.push({
-          text: x,
-          meta: keyMeta,
-          x: this.keysCount + this.currentXOffset + this.additionalWidth,
-          y: 0 + count + this.currentYOffset
-        });
+        this.keys.push(
+          new Key(
+            x,
+            keyMeta,
+            this.keysCount + this.currentXOffset + this.additionalWidth,
+            0 + count + this.currentYOffset
+          )
+        );
 
         this.keysCount++;
         keyMeta = {};
