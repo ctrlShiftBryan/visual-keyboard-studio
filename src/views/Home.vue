@@ -53,9 +53,8 @@
         <g transform="translate(10,10)">
           <g transform="translate(5,5)">
             <!-- <KeyCap v-for="(k, index) in keys" v-bind="{ x: k.x, t1: k.t1 }" :key="index"/> -->
-            <component v-for="(k, index) in keys"  v-bind="{ x, t1, t2, t3, t4, t5, t6 ,t7, t8 } = k"  :is="'KeyCap'" :key="index"></component>
-
-
+            <!-- <component v-for="(k, index) in keys"  v-bind="key"  :is="'KeyCap'" :key="index"></component> -->
+            <KeyCap v-for="k in keys" :key="k.id" :model-key="k" />
           </g>
         </g>
       </svg>
@@ -67,6 +66,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 import KeyCap from "@/components/KeyCap.vue";
+import { Key } from "@/models/Key";
 const source = `
         points="113.721,50.993 5.000,50.993 5.000,5.001 113.721,5.001"
         style="fill:none;stroke-width:0.050000mm;stroke:black"
@@ -164,16 +164,30 @@ const source2 = `
   components: {
     HelloWorld,
     KeyCap
-  },
-
+  }
 })
 export default class Home extends Vue {
-  keys: object[] = [new KeyCap({ propsData: {t7: '1'}} ), new KeyCap({ propsData: {x:1 , t7: '2'}} )];
-
+  // keys: object[] = [new KeyCap({ propsData: {t7: '1'}} ), new KeyCap({ propsData: {x:1 , t7: '2'}} )];
+  keys: Key[] = [
+    new Key({ x: 0, t7: "q" }),
+    new Key({ x: 1, t7: "w" }),
+    new Key({ x: 2, t7: "e" }),
+    new Key({ x: 3, t7: "r" }),
+    new Key({ x: 4, t7: "t" }),
+    new Key({ x: 5, t7: "y" }),
+    new Key({ x: 6, t7: "u" }),
+    new Key({ x: 7, t7: "i" }),
+    new Key({ x: 8, t7: "o" }),
+    new Key({ x: 9, t7: "p" }),
+    new Key({ x: 10, t7: "{" }),
+    new Key({ x: 11, t7: "}" }),
+    new Key({ x: 12, t7: "\\" }),
+    new Key({ x: 0, y: 1, t7: "a" })
+  ];
   public svg: string = source2;
 
-get fooWidth() {
-    return this.keys.length * 70
+  get fooWidth() {
+    return this.keys.length * 70;
   }
 }
 </script>

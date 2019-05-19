@@ -1,54 +1,48 @@
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Guid } from "guid-typescript";
 
-@Component
-export class Key extends Vue {
-  @Prop({ default: 12 })
-  public fontSize!: number;
+export class Key {
+  constructor(props: any = {}) {
+    if (props !== {}) {
+      this.x = props.x;
 
-  @Prop({ default: 5 })
-  public borderRadius!: number;
+      this.y = props.y || 0;
 
-  @Prop({ default: 0 })
-  public x!: number;
+      this.t1 = props.t1;
+      this.t2 = props.t2;
+      this.t3 = props.t3;
+      this.t4 = props.t4;
+      this.t5 = props.t5;
+      this.t6 = props.t6;
+      this.t7 = props.t7;
+      this.t8 = props.t8;
+      this.t9 = props.t9;
+    }
 
-  @Prop({ default: 0 })
-  public y!: number;
+    this.id = Guid.create().toString();
+  }
 
-  @Prop({ default: "Verdana" })
-  public font!: string;
+  public x: number = 0;
 
-  @Prop({ default: "" })
-  public t1!: string;
+  public fontSize: number = 12;
+  public borderRadius: number = 5;
 
-  @Prop({ default: "" })
-  public t2!: string;
+  public id: string;
+  public y: number = 0;
 
-  @Prop({ default: "" })
-  public t3!: string;
+  public font: string = "Verdana";
 
-  @Prop({ default: "" })
-  public t4!: string;
+  public t1: string = "";
+  public t2: string = "";
+  public t3: string = "";
+  public t4: string = "";
+  public t5: string = "";
+  public t6: string = "";
+  public t7: string = "";
+  public t8: string = "";
+  public t9: string = "";
 
-  @Prop({ default: "" })
-  public t5!: string;
-
-  @Prop({ default: "" })
-  public t6!: string;
-
-  @Prop({ default: "" })
-  public t7!: string;
-
-  @Prop({ default: "" })
-  public t8!: string;
-
-  @Prop({ default: "" })
-  public t9!: string;
-
-  @Prop({ default: "" })
-  public backgroundHex!: string;
-
-  @Prop({ default: "" })
-  public legendHex!: string;
+  public backgroundHex: string = "";
+  public legendHex: string = "";
 }
 // export class Key extends Vue {
 //   public text: string;
