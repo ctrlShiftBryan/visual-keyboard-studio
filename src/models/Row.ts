@@ -31,14 +31,15 @@ export class Row {
           this.additionalWidth += keyMeta.w - 1;
         }
 
-        this.keys.push(
-          new Key(
-            x,
-            keyMeta,
-            this.keysCount + this.currentXOffset + this.additionalWidth,
-            0 + count + this.currentYOffset
-          )
-        );
+        this.keys
+          .push
+          // new Key(
+          //   x,
+          //   keyMeta,
+          //   this.keysCount + this.currentXOffset + this.additionalWidth,
+          //   0 + count + this.currentYOffset
+          // )
+          ();
 
         this.keysCount++;
         keyMeta = {};

@@ -40,19 +40,25 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 ml-auto">
-        what
-      </div>
+      <div class="col-md-4 ml-auto">what</div>
     </div>
     <div class="row p-3">
       <svg
-        width="188"
+        :width="fooWidth"
         height="138"
-        viewBox="0.000 0.000 188 138"
+        :viewBox="`0.000 0.000 ${fooWidth} 138`"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
-        v-html="svg"
-      ></svg>
+      >
+        <g transform="translate(10,10)">
+          <g transform="translate(5,5)">
+            <!-- <KeyCap v-for="(k, index) in keys" v-bind="{ x: k.x, t1: k.t1 }" :key="index"/> -->
+            <component v-for="(k, index) in keys"  v-bind="{ x, t1, t2, t3, t4, t5, t6 ,t7, t8 } = k"  :is="'KeyCap'" :key="index"></component>
+
+
+          </g>
+        </g>
+      </svg>
     </div>
   </div>
 </template>
@@ -60,6 +66,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import KeyCap from "@/components/KeyCap.vue";
 const source = `
         points="113.721,50.993 5.000,50.993 5.000,5.001 113.721,5.001"
         style="fill:none;stroke-width:0.050000mm;stroke:black"
@@ -79,27 +86,6 @@ const source2 = `
     .keycap .border { stroke: black; stroke-width: 2; }
     .keycap .inner.border { stroke: rgba(0,0,0,.1); }
       </style>
-      <defs>
-            <linearGradient id="DCS">
-                  <stop offset="0%" stop-color="black" stop-opacity="0"/>
-                  <stop offset="40%" stop-color="black" stop-opacity="0.1"/>
-                  <stop offset="60%" stop-color="black" stop-opacity="0.1"/>
-                  <stop offset="100%" stop-color="black" stop-opacity="0"/>
-            </linearGradient>
-            <linearGradient id="SPACE" x1="0%" x2="0%" y1="0%" y2="100%">
-                  <stop offset="0%" stop-color="black" stop-opacity="0.1"/>
-                  <stop offset="20%" stop-color="black" stop-opacity="0.0"/>
-                  <stop offset="40%" stop-color="black" stop-opacity="0.0"/>
-                  <stop offset="100%" stop-color="black" stop-opacity="0.1"/>
-            </linearGradient>
-            <radialGradient id="DSA">
-                  <stop offset="0%" stop-color="black" stop-opacity="0.1"/>
-                  <stop offset="10%" stop-color="black" stop-opacity="0.1"/>
-                  <stop offset="100%" stop-color="black" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="SA" xlink:href="#DSA" />
-      </defs>
-
       <g transform='translate(10,10)'>
             <g transform='translate(5,5)'>
                   <g class='keycap'>
@@ -113,15 +99,15 @@ const source2 = `
                         <!-- Inner Fill -->
                         <rect x="7" y="4" width="40" height="40" rx="5" fill="#fcfcfc"/>
 
-                        <text x="10" y="18" font-family="Verdana" font-size="12" fill="black">1</text>
-                        <text x="10" y="28" font-family="Verdana" font-size="12" fill="black">2</text>
-                        <text x="10" y="38" font-family="Verdana" font-size="12" fill="black">3</text>
-                        <text x="23" y="18" font-family="Verdana" font-size="12" fill="black">4</text>
+                        <text x="10" y="18" font-family="Verdana" font-size="12" fill="black">7</text>
+                        <text x="10" y="28" font-family="Verdana" font-size="12" fill="black">4</text>
+                        <text x="10" y="38" font-family="Verdana" font-size="12" fill="black">1</text>
+                        <text x="23" y="18" font-family="Verdana" font-size="12" fill="black">8</text>
                         <text x="23" y="28" font-family="Verdana" font-size="12" fill="black">5</text>
-                        <text x="23" y="38" font-family="Verdana" font-size="12" fill="black">6</text>
-                        <text x="36" y="18" font-family="Verdana" font-size="12" fill="black">7</text>
-                        <text x="36" y="28" font-family="Verdana" font-size="12" fill="black">8</text>
-                        <text x="36" y="38" font-family="Verdana" font-size="12" fill="black">9</text>
+                        <text x="23" y="38" font-family="Verdana" font-size="12" fill="black">2</text>
+                        <text x="36" y="18" font-family="Verdana" font-size="12" fill="black">9</text>
+                        <text x="36" y="28" font-family="Verdana" font-size="12" fill="black">6</text>
+                        <text x="36" y="38" font-family="Verdana" font-size="12" fill="black">3</text>
                   </g>
 
                   <g class='keycap'>
@@ -173,12 +159,21 @@ const source2 = `
             </g>
       </g>
 `;
+
 @Component({
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+    KeyCap
+  },
+
 })
 export default class Home extends Vue {
+  keys: object[] = [new KeyCap({ propsData: {t7: '1'}} ), new KeyCap({ propsData: {x:1 , t7: '2'}} )];
+
   public svg: string = source2;
+
+get fooWidth() {
+    return this.keys.length * 70
+  }
 }
 </script>
