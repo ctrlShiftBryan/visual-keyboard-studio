@@ -130,7 +130,7 @@ export default class KeyCap extends Vue {
     const height = 54 * this.modelKey.height + 1;
 
     const base_x = this.modelKey.x * 56;
-    const base_y = this.modelKey.y * 54;
+    const base_y = this.modelKey.y * 56;
 
     const x_pad = 6;
     const y_pad = 4;
