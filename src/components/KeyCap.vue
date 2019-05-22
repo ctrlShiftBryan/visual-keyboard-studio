@@ -1,117 +1,38 @@
 <template>
   <g class="keycap" @click="handleClick">
-    <!-- Outer Border -->
     <rect
       :x="model.x"
       :y="model.y"
-      :width="model.calc_width"
+      :width="model.calc_width + 1"
       :height="model.calc_height"
-      rx="5"
-      fill="#cccccc"
+      fill="#191234"
       class="outer border"
     />
-    <!-- Outer Fill -->
-    <rect
-      :x="model.x"
-      :y="model.y"
-      :width="model.calc_width"
-      :height="model.calc_height"
-      rx="5"
-      fill="#cccccc"
-    />
-    <!-- Inner Border -->
-    <rect
-      :x="model.x_inner"
-      :y="model.y_inner"
-      :width="model.inner_width"
-      :height="model.inner_height"
-      rx="5"
-      fill="#fcfcfc"
-      class="inner border"
-    />
-    <!-- Inner Fill -->
-    <rect
-      :x="model.x_inner"
-      :y="model.y_inner"
-      :width="model.inner_width"
-      :height="model.inner_height"
-      fill="#fcfcfc"
-    />
+    <g id="Layer_8">
+      <rect
+        :x="model.x2"
+        :y="model.y2"
+        :width="model.calc_width2"
+        :height="model.calc_height2"
+        class="st0"
+      />
+    </g>
+    <g id="left">
+      <polyline class="st1" :points="model.left_points" />
+    </g>
+    <g id="bottom">
+      <polygon class="st3" :points="model.bottom_points" />
+    </g>
+    <g id="Layer_9">
+      <g>
+        <text
+          :transform="`matrix(${model.text_transform})`"
+          class="st5 st6 st7"
+          >{{ model.t7 }}</text
+        >
+      </g>
+    </g>
 
-    <text
-      :x="model.x_left_text"
-      :y="model.y_left_text"
-      font-family="Verdana"
-      font-size="12"
-      fill="black"
-      >{{ model.t7 }}</text
-    >
-    <text
-      :x="model.x_middle_text"
-      :y="model.y_left_text"
-      font-family="Verdana"
-      font-size="12"
-      fill="black"
-      >{{ model.t8 }}</text
-    >
-    <text
-      :x="model.x_right_text"
-      :y="model.y_left_text"
-      font-family="Verdana"
-      font-size="12"
-      fill="black"
-      >{{ model.t9 }}</text
-    >
-
-    <text
-      :x="model.x_left_text"
-      :y="model.y_middle_text"
-      font-family="Verdana"
-      font-size="12"
-      fill="black"
-      >{{ model.t4 }}</text
-    >
-    <text
-      :x="model.x_middle_text"
-      :y="model.y_middle_text"
-      font-family="Verdana"
-      font-size="12"
-      fill="black"
-      >{{ model.t5 }}</text
-    >
-    <text
-      :x="model.x_right_text"
-      :y="model.y_middle_text"
-      font-family="Verdana"
-      font-size="12"
-      fill="black"
-      >{{ model.t6 }}</text
-    >
-
-    <text
-      :x="model.x_left_text"
-      :y="model.y_right_text"
-      font-family="Verdana"
-      font-size="12"
-      fill="black"
-      >{{ model.t1 }}</text
-    >
-    <text
-      :x="model.x_middle_text"
-      :y="model.y_right_text"
-      font-family="Verdana"
-      font-size="12"
-      fill="black"
-      >{{ model.t2 }}</text
-    >
-    <text
-      :x="model.x_right_text"
-      :y="model.y_right_text"
-      font-family="Verdana"
-      font-size="12"
-      fill="black"
-      >{{ model.t3 }}</text
-    >
   </g>
 </template>
 <script lang="ts">
@@ -143,25 +64,40 @@ export default class KeyCap extends Vue {
 
     return {
       ...this.modelKey,
+
       calc_width: width,
       calc_height: height,
-
-      inner_width: width - 12,
-      inner_height: height - 12,
-
+      calc_width2: width - 19,
+      calc_height2: height - 15,
       x: base_x,
       y: base_y,
-      x_inner: base_x + x_pad,
+      x2: base_x + 9,
+      y2: base_y + 0,
 
-      y_inner: base_y + y_pad,
+      left_points:
+        `${base_x + 10},${base_y} ` +
+        `${base_x},${base_y} ` +
+        `${base_x},${base_y + height} ` +
+        `${base_x + 10},${base_y + height - 15}`,
 
-      x_left_text: base_x + text_x_pad,
-      x_middle_text: base_x + text_x_pad + x_text_pad,
-      x_right_text: base_x + text_x_pad + x_text_pad + x_text_pad,
+      bottom_points:
+        `${base_x},${base_y + height} ` +
+        `${base_x + 10},${base_y + height - 15} ` +
+        `${base_x + width - 10},${base_y + height - 15} ` +
+        `${base_x + width},${base_y + height}`,
 
-      y_left_text: base_y + text_y_pad,
-      y_middle_text: base_y + text_y_pad + y_text_pad,
-      y_right_text: base_y + text_y_pad + y_text_pad + y_text_pad
+      text_transform: `1 0 0 1 ${base_x + 13} ${base_y + 20}`,
+
+      // x_inner: base_x + x_pad,
+      // y_inner: base_y + y_pad,
+
+      // x_left_text: base_x + text_x_pad,
+      // x_middle_text: base_x + text_x_pad + x_text_pad,
+      // x_right_text: base_x + text_x_pad + x_text_pad + x_text_pad,
+
+      // y_left_text: base_y + text_y_pad,
+      // y_middle_text: base_y + text_y_pad + y_text_pad,
+      // y_right_text: base_y + text_y_pad + y_text_pad + y_text_pad
     };
   }
 }
@@ -174,5 +110,30 @@ export default class KeyCap extends Vue {
 }
 .keycap .inner.border {
   stroke: rgba(0, 0, 0, 0.1);
+}
+
+.st0 {
+  fill: #401673;
+}
+.st1 {
+  fill: #350d75;
+}
+.st2 {
+  fill: none;
+}
+.st3 {
+  fill: #2a0f74;
+}
+.st4 {
+  fill: #191234;
+}
+.st5 {
+  fill: #009eb5;
+}
+.st6 {
+  font-family: "Arial";
+}
+.st7 {
+  font-size: 15px;
 }
 </style>
