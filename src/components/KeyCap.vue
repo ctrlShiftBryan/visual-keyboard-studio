@@ -3,10 +3,10 @@
     <rect
       :x="model.x"
       :y="model.y"
-      :width="model.calc_width + 1"
-      :height="model.calc_height"
-      fill="#191234"
-      class="outer border"
+      :width="model.calc_width + model.width"
+      :height="model.calc_height + model.height"
+      :style="`stroke: ${model.color_darkest}; stroke-width: 2;`"
+      :fill="model.color_darker"
     />
     <g id="Layer_8">
       <rect
@@ -14,14 +14,17 @@
         :y="model.y2"
         :width="model.calc_width2"
         :height="model.calc_height2"
-        class="st0"
+        :fill="model.color"
       />
     </g>
     <g id="left">
-      <polyline class="st1" :points="model.left_points" />
+      <polyline
+        :style="{ fill: `${model.color_lighter}` }"
+        :points="model.left_points"
+      />
     </g>
     <g id="bottom">
-      <polygon class="st3" :points="model.bottom_points" />
+      <polygon :fill="model.color_dark" :points="model.bottom_points" />
     </g>
     <g id="Layer_9">
       <g>
@@ -32,20 +35,34 @@
         >
       </g>
     </g>
-
   </g>
 </template>
 <script lang="ts">
 import { Key } from "../models/Key";
 import { Component, Mixins, Vue, Prop } from "vue-property-decorator";
+import Color from "color";
+import { Sketch } from "vue-color";
 
-@Component
+@Component({
+  components: {
+    Sketch
+  }
+})
 export default class KeyCap extends Vue {
   @Prop({ required: true })
   public modelKey!: Key;
   handleClick() {
     console.log(this.model);
   }
+
+  lighten(col: string, amt: number) {
+    if (amt < 0) {
+      return new Color(col).lighten(amt * -1);
+    } else {
+      return new Color(col).darken(amt);
+    }
+  }
+
   get model() {
     const width = 54 * this.modelKey.width + this.modelKey.width;
     const height = 54 * this.modelKey.height + 1;
@@ -72,11 +89,11 @@ export default class KeyCap extends Vue {
       x: base_x,
       y: base_y,
       x2: base_x + 9,
-      y2: base_y + 0,
+      y2: base_y + 1,
 
       left_points:
-        `${base_x + 10},${base_y} ` +
-        `${base_x},${base_y} ` +
+        `${base_x + 10},${base_y + 1} ` +
+        `${base_x},${base_y + 1} ` +
         `${base_x},${base_y + height} ` +
         `${base_x + 10},${base_y + height - 15}`,
 
@@ -88,16 +105,11 @@ export default class KeyCap extends Vue {
 
       text_transform: `1 0 0 1 ${base_x + 13} ${base_y + 20}`,
 
-      // x_inner: base_x + x_pad,
-      // y_inner: base_y + y_pad,
-
-      // x_left_text: base_x + text_x_pad,
-      // x_middle_text: base_x + text_x_pad + x_text_pad,
-      // x_right_text: base_x + text_x_pad + x_text_pad + x_text_pad,
-
-      // y_left_text: base_y + text_y_pad,
-      // y_middle_text: base_y + text_y_pad + y_text_pad,
-      // y_right_text: base_y + text_y_pad + y_text_pad + y_text_pad
+      color_lighter: this.lighten(this.modelKey.backgroundHex, -0.5),
+      color: this.modelKey.backgroundHex,
+      color_dark: this.lighten(this.modelKey.backgroundHex, 0.25),
+      color_darker: this.lighten(this.modelKey.backgroundHex, 0.4),
+      color_darkest: this.lighten(this.modelKey.backgroundHex, 0.6)
     };
   }
 }
