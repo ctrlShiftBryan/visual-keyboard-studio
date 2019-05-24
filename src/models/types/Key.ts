@@ -1,4 +1,4 @@
-import { Guid } from "guid-typescript";
+import { Guid } from 'guid-typescript';
 
 export class Key {
   constructor(params: any = {}) {
@@ -15,7 +15,7 @@ export class Key {
     }
   }
 
-  public text: string = "";
+  public text: string = '';
   public meta: object = {};
 
   public x: number = 0;
@@ -26,20 +26,20 @@ export class Key {
   public id: string;
   public y: number = 0;
 
-  public font: string = "Verdana";
+  public font: string = 'Verdana';
 
-  public t1: string = "";
-  public t2: string = "";
-  public t3: string = "";
-  public t4: string = "";
-  public t5: string = "";
-  public t6: string = "";
-  public t7: string = "";
-  public t8: string = "";
-  public t9: string = "";
+  public t1: string = '';
+  public t2: string = '';
+  public t3: string = '';
+  public t4: string = '';
+  public t5: string = '';
+  public t6: string = '';
+  public t7: string = '';
+  public t8: string = '';
+  public t9: string = '';
 
-  public backgroundHex: string = "";
-  public legendHex: string = "";
+  public backgroundHex: string = '';
+  public legendHex: string = '';
 
   public width: number = 1;
   public height: number = 1;

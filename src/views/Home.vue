@@ -42,7 +42,7 @@
 <script lang="ts">
 import 'vue-octicon/icons/repo';
 import { Component, Vue } from 'vue-property-decorator';
-import { Key } from '@/models/Key';
+import { Key } from '@/models/types/Key';
 import { Sketch } from 'vue-color';
 import ColorPicker from '@/components/ColorPick.vue';
 import KeyCap from '@/components/KeyCap.vue';

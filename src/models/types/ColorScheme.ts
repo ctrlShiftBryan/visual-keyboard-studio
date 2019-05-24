@@ -1,10 +1,10 @@
-import { Guid } from "guid-typescript";
-import { IColorScheme } from "./ColorScheme";
+import { Guid } from 'guid-typescript';
+import { IColorScheme } from './ColorScheme';
 
 export interface IColorScheme {
-  primaryColor: string;
-  secondaryColor: string;
-  id: string;
+  primaryColor?: string;
+  secondaryColor?: string;
+  id?: string;
 }
 
 export class ColorScheme {
@@ -17,8 +17,8 @@ export class ColorScheme {
     } else {
       this.id = params.id;
     }
-    this.colors.push(["primary", "#111111"]);
-    this.colors.push(["secondary", "#222222"]);
+    this.colors.push(['primary', '#111111']);
+    this.colors.push(['secondary', '#222222']);
   }
 
   groups(): string[] {

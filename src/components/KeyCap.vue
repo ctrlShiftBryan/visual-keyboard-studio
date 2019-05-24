@@ -38,7 +38,7 @@
   </g>
 </template>
 <script lang="ts">
-import { Key } from '../models/Key';
+import { Key } from '@/models/types/Key';
 import { Component, Mixins, Vue, Prop } from 'vue-property-decorator';
 import Color from 'color';
 import { Sketch } from 'vue-color';
