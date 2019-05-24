@@ -8,60 +8,10 @@
       <div class="col-sm">
         <div class="row">
           <div class="col-8 col-sm-6">
-            <div>
-              <label class="control-label">Background</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span id="basic-addon1" class="input-group-text">
-                    <input type="radio" name="group" />
-                  </span>
-                </div>
-                <input
-                  id="addressLine1"
-                  v-model="backgroundColor"
-                  name="addressLine1"
-                  placeholder="#000000"
-                  class="form-control"
-                  required="true"
-                  type="text"
-                  @focus="backgroundPickerVisible = true"
-                />
-
-                <div
-                  v-if="backgroundPickerVisible"
-                  v-on-clickaway="away"
-                  class="backgroundSketchHolder"
-                >
-                  <sketch
-                    :value="backgroundColor"
-                    @input="
-                      x => {
-                        updateColor('primary', x);
-                      }
-                    "
-                  />
-                </div>
-              </div>
-            </div>
-            <label class="control-label">Alpha</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span id="basic-addon1" class="input-group-text">
-                  <input type="radio" name="group" />
-                </span>
-              </div>
-              <input
-                id="addressLine1"
-                name="addressLine1"
-                placeholder="#FFFFFF"
-                class="form-control"
-                required="true"
-                value
-                type="text"
-              />
-            </div>
+            <ColorPicker id="background-color" name="Background Color" />
+            <ColorPicker id="alpa-color" name="Alpha Color" />
           </div>
-          <div class="col-4 col-sm-6"></div>
+          <div class="col-4 col-sm-6">more</div>
         </div>
 
         <div class="row">
@@ -90,23 +40,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-import KeyCap from '@/components/KeyCap.vue';
-import { Key } from '@/models/Key';
-import Octicon from 'vue-octicon/components/Octicon.vue';
 import 'vue-octicon/icons/repo';
+import { Component, Vue } from 'vue-property-decorator';
+import { Key } from '@/models/Key';
 import { Sketch } from 'vue-color';
-import { mixin as clickaway } from 'vue-clickaway';
-
+import ColorPicker from '@/components/ColorPick.vue';
+import KeyCap from '@/components/KeyCap.vue';
+import Octicon from 'vue-octicon/components/Octicon.vue';
 @Component({
   components: {
     Sketch,
-    HelloWorld,
     KeyCap,
-    Octicon
-  },
-  mixins: [clickaway]
+    Octicon,
+    ColorPicker
+  }
 })
 export default class Home extends Vue {
   backgroundColor: string = '#425A37';
@@ -157,24 +104,6 @@ export default class Home extends Vue {
     ];
   }
 
-  updateColor(target: string, color: any) {
-    if (target === 'primary') {
-      this.backgroundColor = color.hex;
-    }
-  }
-
-  handleBlur(e: any) {
-    console.log(e);
-  }
-
-  away(x: MouseEvent) {
-    const srcElement = x.srcElement as Element;
-    if (srcElement && srcElement.id === 'addressLine1') {
-      this.backgroundPickerVisible = true;
-    } else {
-      this.backgroundPickerVisible = false;
-    }
-  }
   get maxHeight() {
     const maxKey = this.keys.reduce((prev, current) =>
       prev.y + prev.height > current.y + current.height ? prev : current
@@ -190,10 +119,3 @@ export default class Home extends Vue {
   }
 }
 </script>
-<style lang="scss" scoped>
-.backgroundSketchHolder {
-  position: absolute;
-  z-index: 1;
-  margin-top: 38px;
-}
-</style>
