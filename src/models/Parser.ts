@@ -4,7 +4,7 @@ export class Parser {
   public jsonRows: any[];
   constructor(source: string) {
     const json = JSON.parse(source);
-    this.name = "";
+    this.name = '';
     this.rowsCount = 0;
     this.jsonRows = [];
     for (const x of json) {

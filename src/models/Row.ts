@@ -1,4 +1,4 @@
-import { Key } from "./Key";
+import { Key } from './Key';
 
 export class Row {
   public keysCount: number;
@@ -14,7 +14,7 @@ export class Row {
     this.currentYOffset = 0;
     this.additionalWidth = 0;
     for (const x of row) {
-      if (typeof x === "object") {
+      if (typeof x === 'object') {
         keyMeta = x;
       } else {
         // check for additional offsets

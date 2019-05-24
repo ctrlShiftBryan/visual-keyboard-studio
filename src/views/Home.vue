@@ -1,51 +1,52 @@
 <template>
   <div class="container-fluid">
-    <v-style>
-      .bg-dark { background-color: {{ backgroundColor }}!important; }
-    </v-style>
+    <v-style
+      >.bg-dark { background-color: {{ backgroundColor }}!important; }</v-style
+    >
     <div class="row">
       <div class="col-sm">One of three columns</div>
       <div class="col-sm">
         <div class="row">
           <div class="col-8 col-sm-6">
-            <label class="control-label">Background</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
-                  <input type="radio" name="group" />
-                </span>
-              </div>
-              <input
-                id="addressLine1"
-                name="addressLine1"
-                placeholder="#000000"
-                class="form-control"
-                required="true"
-                v-model="backgroundColor"
-                type="text"
-                @focus="backgroundPickerVisible = true"
-              />
-
-              <div
-                class="backgroundSketchHolder"
-                v-if="backgroundPickerVisible"
-                v-on-clickaway="away"
-              >
-                <sketch
-                  :value="backgroundColor"
-                  @input="
-                    x => {
-                      updateColor('primary', x);
-                    }
-                  "
+            <div>
+              <label class="control-label">Background</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span id="basic-addon1" class="input-group-text">
+                    <input type="radio" name="group" />
+                  </span>
+                </div>
+                <input
+                  id="addressLine1"
+                  v-model="backgroundColor"
+                  name="addressLine1"
+                  placeholder="#000000"
+                  class="form-control"
+                  required="true"
+                  type="text"
+                  @focus="backgroundPickerVisible = true"
                 />
+
+                <div
+                  v-if="backgroundPickerVisible"
+                  v-on-clickaway="away"
+                  class="backgroundSketchHolder"
+                >
+                  <sketch
+                    :value="backgroundColor"
+                    @input="
+                      x => {
+                        updateColor('primary', x);
+                      }
+                    "
+                  />
+                </div>
               </div>
             </div>
-
             <label class="control-label">Alpha</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
+                <span id="basic-addon1" class="input-group-text">
                   <input type="radio" name="group" />
                 </span>
               </div>
@@ -89,14 +90,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-import KeyCap from "@/components/KeyCap.vue";
-import { Key } from "@/models/Key";
-import Octicon from "vue-octicon/components/Octicon.vue";
-import "vue-octicon/icons/repo";
-import { Sketch } from "vue-color";
-import { mixin as clickaway } from "vue-clickaway";
+import { Component, Vue } from 'vue-property-decorator';
+import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import KeyCap from '@/components/KeyCap.vue';
+import { Key } from '@/models/Key';
+import Octicon from 'vue-octicon/components/Octicon.vue';
+import 'vue-octicon/icons/repo';
+import { Sketch } from 'vue-color';
+import { mixin as clickaway } from 'vue-clickaway';
 
 @Component({
   components: {
@@ -108,48 +109,48 @@ import { mixin as clickaway } from "vue-clickaway";
   mixins: [clickaway]
 })
 export default class Home extends Vue {
-  backgroundColor: string = "#425A37";
+  backgroundColor: string = '#425A37';
   backgroundPickerVisible: boolean = false;
   get keys() {
     return [
-      new Key({ x: 0, t7: "q", backgroundHex: this.backgroundColor }),
-      new Key({ x: 1, t7: "w", backgroundHex: this.backgroundColor }),
-      new Key({ x: 2, t7: "e", backgroundHex: this.backgroundColor }),
-      new Key({ x: 3, t7: "r", backgroundHex: this.backgroundColor }),
-      new Key({ x: 4, t7: "t", backgroundHex: this.backgroundColor }),
-      new Key({ x: 5, t7: "y", backgroundHex: this.backgroundColor }),
-      new Key({ x: 6, t7: "u", backgroundHex: this.backgroundColor }),
-      new Key({ x: 7, t7: "i", backgroundHex: this.backgroundColor }),
-      new Key({ x: 8, t7: "o", backgroundHex: this.backgroundColor }),
-      new Key({ x: 9, t7: "p", backgroundHex: this.backgroundColor }),
-      new Key({ x: 10, t7: "{", backgroundHex: this.backgroundColor }),
-      new Key({ x: 11, t7: "}", backgroundHex: this.backgroundColor }),
-      new Key({ x: 12, t7: "\\", backgroundHex: this.backgroundColor }),
+      new Key({ x: 0, t7: 'q', backgroundHex: this.backgroundColor }),
+      new Key({ x: 1, t7: 'w', backgroundHex: this.backgroundColor }),
+      new Key({ x: 2, t7: 'e', backgroundHex: this.backgroundColor }),
+      new Key({ x: 3, t7: 'r', backgroundHex: this.backgroundColor }),
+      new Key({ x: 4, t7: 't', backgroundHex: this.backgroundColor }),
+      new Key({ x: 5, t7: 'y', backgroundHex: this.backgroundColor }),
+      new Key({ x: 6, t7: 'u', backgroundHex: this.backgroundColor }),
+      new Key({ x: 7, t7: 'i', backgroundHex: this.backgroundColor }),
+      new Key({ x: 8, t7: 'o', backgroundHex: this.backgroundColor }),
+      new Key({ x: 9, t7: 'p', backgroundHex: this.backgroundColor }),
+      new Key({ x: 10, t7: '{', backgroundHex: this.backgroundColor }),
+      new Key({ x: 11, t7: '}', backgroundHex: this.backgroundColor }),
+      new Key({ x: 12, t7: '\\', backgroundHex: this.backgroundColor }),
       new Key({
         x: 0,
         y: 1,
-        t7: "a",
+        t7: 'a',
         width: 2,
         backgroundHex: this.backgroundColor
       }),
       new Key({
         x: 2,
         y: 1,
-        t7: "s",
+        t7: 's',
         width: 1,
         backgroundHex: this.backgroundColor
       }),
       new Key({
         x: 3,
         y: 1,
-        t7: "d",
+        t7: 'd',
         height: 2,
         backgroundHex: this.backgroundColor
       }),
       new Key({
         x: 0,
         y: 2,
-        t7: "z",
+        t7: 'z',
         height: 1,
         backgroundHex: this.backgroundColor
       })
@@ -157,7 +158,7 @@ export default class Home extends Vue {
   }
 
   updateColor(target: string, color: any) {
-    if (target === "primary") {
+    if (target === 'primary') {
       this.backgroundColor = color.hex;
     }
   }
@@ -167,7 +168,8 @@ export default class Home extends Vue {
   }
 
   away(x: MouseEvent) {
-    if (x.srcElement && x.srcElement.id === "addressLine1") {
+    const srcElement = x.srcElement as Element;
+    if (srcElement && srcElement.id === 'addressLine1') {
       this.backgroundPickerVisible = true;
     } else {
       this.backgroundPickerVisible = false;

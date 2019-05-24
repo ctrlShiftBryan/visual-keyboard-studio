@@ -38,10 +38,10 @@
   </g>
 </template>
 <script lang="ts">
-import { Key } from "../models/Key";
-import { Component, Mixins, Vue, Prop } from "vue-property-decorator";
-import Color from "color";
-import { Sketch } from "vue-color";
+import { Key } from '../models/Key';
+import { Component, Mixins, Vue, Prop } from 'vue-property-decorator';
+import Color from 'color';
+import { Sketch } from 'vue-color';
 
 @Component({
   components: {
@@ -143,7 +143,7 @@ export default class KeyCap extends Vue {
   fill: #009eb5;
 }
 .st6 {
-  font-family: "Arial";
+  font-family: 'Arial';
 }
 .st7 {
   font-size: 15px;
