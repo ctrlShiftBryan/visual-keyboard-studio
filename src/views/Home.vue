@@ -8,8 +8,8 @@
       <div class="col-sm">
         <div class="row">
           <div class="col-8 col-sm-6">
-            <ColorPicker id="background-color" name="Background Color" />
-            <ColorPicker id="alpa-color" name="Alpha Color" />
+            <!-- <ColorPicker id="background-color" name="Background Color" />
+            <ColorPicker id="alpa-color" name="Alpha Color" /> -->
           </div>
           <div class="col-4 col-sm-6">more</div>
         </div>
@@ -43,20 +43,18 @@
 import 'vue-octicon/icons/repo';
 import { Component, Vue } from 'vue-property-decorator';
 import { Key } from '@/models/types/Key';
-import { Sketch } from 'vue-color';
-import ColorPicker from '@/components/ColorPick.vue';
+// import ColorPicker from '@/components/ColorPick.vue';
 import KeyCap from '@/components/KeyCap.vue';
 import Octicon from 'vue-octicon/components/Octicon.vue';
 @Component({
   components: {
-    Sketch,
     KeyCap,
-    Octicon,
-    ColorPicker
+    Octicon
+    // ColorPicker
   }
 })
 export default class Home extends Vue {
-  backgroundColor: string = '#425A37';
+  backgroundColor: string = '#0B1079';
   backgroundPickerVisible: boolean = false;
   get keys() {
     return [
