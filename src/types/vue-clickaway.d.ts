@@ -1,3 +1,3 @@
-declare module "vue-clickaway" {
+declare module 'vue-clickaway' {
   export const mixin: any;
 }

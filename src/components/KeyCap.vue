@@ -38,16 +38,11 @@
   </g>
 </template>
 <script lang="ts">
-import { Key } from '../models/Key';
+import { Key } from '@/models/types/Key';
 import { Component, Mixins, Vue, Prop } from 'vue-property-decorator';
 import Color from 'color';
-import { Sketch } from 'vue-color';
 
-@Component({
-  components: {
-    Sketch
-  }
-})
+@Component({})
 export default class KeyCap extends Vue {
   @Prop({ required: true })
   public modelKey!: Key;
